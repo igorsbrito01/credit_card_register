@@ -1,6 +1,6 @@
 version: '3'
 services:
-  db:
+  database:
     image: postgres:15.0
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -14,5 +14,23 @@ services:
     expose:
       - '5432'
 
+  server:
+    image: credit-card-register:latest
+    build: .
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - type: bind
+        source: .
+        target: /server/
+    depends_on:
+      - database
+
 volumes:
   postgres_data:
+
+networks:
+  default:
+    name: register_net

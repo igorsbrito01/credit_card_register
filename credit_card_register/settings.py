@@ -82,7 +82,7 @@ DATABASES = {
         "NAME": config("DB", default="credit_card_register"),
         "USER": config("DB_USER", default="dev_user"),
         "PASSWORD": config("DB_PASS", default="dev_pas_9898"),
-        "HOST": config("DB_HOST", default="localhost"),
+        "HOST": config("DB_HOST", default="database"),
         "PORT": config("DB_PORT", default="5432"),
     }
 }
