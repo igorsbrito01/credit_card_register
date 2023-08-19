@@ -14,7 +14,7 @@ docker_run_server:
 	@docker-compose up -d
 
 docker_migrate:
-	@docker credit_card_register-server-1 exec python manage.py migrate
+	@docker exec credit_card_register-server-1 python manage.py migrate
 
 docker_makemigrations:
-	@docker credit_card_register-server-1 exec python manage.py migrate
+	@docker exec credit_card_register-server-1 python manage.py migrate
