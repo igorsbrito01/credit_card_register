@@ -1,2 +1,4 @@
 Django==4.2.4
 black==23.7.0
+psycopg2-binary==2.9.7
+decouple==0.0.7
