@@ -9,4 +9,4 @@ class CreditCard(models.Model):
     brand = models.CharField(max_length=500, null=False, blank=False)
 
     def __repr__(self) -> str:
-        return f"Credit Card - {self.holder} - {self.number[-4:]}"
+        return f"Credit Card - {self.holder} - {self.number}"
