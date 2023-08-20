@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins
 from .serializers import (
     CreditCardCreateListSerializer,
-    CreditCardCreateCreateSerializer,
+    CreditCardCreateSerializer,
 )
 from .models import CreditCard
 
@@ -13,5 +13,5 @@ class CreditCardListCreateView(
 
     def get_serializer_class(self):
         if self.request.method == "POST":
-            return CreditCardCreateCreateSerializer
+            return CreditCardCreateSerializer
         return CreditCardCreateListSerializer

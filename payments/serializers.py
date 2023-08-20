@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import CreditCard
-from .utils import create_date_from_year_month
+from .utils import create_formated_date_with_day
 
 
 class CreditCardCreateListSerializer(serializers.ModelSerializer):
@@ -10,8 +10,9 @@ class CreditCardCreateListSerializer(serializers.ModelSerializer):
         fields = ("id", "holder", "number", "brand")
 
 
-class CreditCardCreateCreateSerializer(serializers.ModelSerializer):
+class CreditCardCreateSerializer(serializers.ModelSerializer):
     exp_date = serializers.CharField(max_length=7)
+    cvv = serializers.CharField(max_length=4, required=False)
 
     class Meta:
         model = CreditCard
@@ -21,10 +22,12 @@ class CreditCardCreateCreateSerializer(serializers.ModelSerializer):
     # TODO: encript number
 
     def create(self, validated_data):
+        if "cvv" in validated_data:
+            cvv_str = validated_data.pop("cvv")
+            validated_data["cvv"] = int(cvv_str)
+
         exp_date_str = validated_data.pop("exp_date")
-        exp_date = create_date_from_year_month(
-            int(exp_date_str.split("/")[0]), int(exp_date_str.split("/")[1])
-        )
+        exp_date = create_formated_date_with_day(exp_date_str)
         validated_data["exp_date"] = exp_date
 
         return super().create(validated_data)
