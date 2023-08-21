@@ -7,14 +7,16 @@
 The challenge was building an API to register credit card information following rules related to the validation of the credit card data.
 
  ## Technologies
- - Python 3.9
- - Django
- - Django Rest Framework (DRF)
- - Docker
- - Docker Compose
- - PostgreSQL
+ - [Python 3.9](https://www.python.org/)
+ - [Django v4.2.4](https://www.djangoproject.com/)
+ - [Django Rest Framework (DRF) v3.14.0]https://www.django-rest-framework.org/
+ - [Docker v24.0.2](https://docs.docker.com/)
+ - [Docker Compose](https://docs.docker.com/compose/)
+ - [PostgreSQL 15](https://www.postgresql.org/)
 
  I developed a API using mainly Django and DRF and created a dockerized environment to make it easier for the developer to configure the project and to make everyone have a very similar environments
+
+ - Also use [black v23.7.0](https://github.com/psf/black) to help formatting the code at a pattern.
 
  ## Setup The project
  Create a .env file at the root directory and copy the content from the .env.example file to the .env file. 
