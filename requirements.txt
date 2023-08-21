@@ -3,3 +3,5 @@ black==23.7.0
 psycopg2-binary==2.9.7
 python-decouple==3.0
 djangorestframework==3.14.0
+python-dateutil==2.8.2
+python-creditcard @ git+https://github.com/maistodos/python-creditcard.git@6b6bcc5d975985337c35e5c1a4f87d861bcac731

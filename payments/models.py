@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 
+
 class CreditCard(models.Model):
     holder = models.CharField(max_length=255, null=False, blank=False)
     number = models.TextField(null=False, blank=False)
