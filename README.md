@@ -93,7 +93,7 @@ To access any credit card endpoint a session token is required, it can be acquir
 
 ### Credit Card endpoints
 `List all credit cards ` [GET - /api/v1/credit-card](#get---apiv1credit-card) <br/>
-`Retrieve a single credit card by id ` [GET - /api/v1/credit-card/<pk>](#get---apiv1credit-card-<pk>) <br/>
+`Retrieve a single credit card by id ` [GET - /api/v1/credit-card/<pk>](get---apiv1credit-card-pk-) <br/>
 `Create a new credir card ` [POST - /api/v1/credit-card](#post---apiv1credit-card) <br/>
 
 
