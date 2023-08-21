@@ -1,3 +1,5 @@
+from typing import Dict, Any
+
 from rest_framework import serializers
 
 from .models import CreditCard
@@ -16,7 +18,7 @@ class CreditCardListSerializer(serializers.ModelSerializer):
         model = CreditCard
         fields = ("id", "holder", "number", "brand", "created_at", "updated_at")
 
-    def get_number(self, obj):
+    def get_number(self, obj: CreditCard) -> str:
         number = decrypt(obj.number)
         return hide_cc_numbers(number)
 
@@ -30,15 +32,15 @@ class CreditCardCreateSerializer(serializers.ModelSerializer):
         model = CreditCard
         fields = ("id", "holder", "number", "cvv", "exp_date")
 
-    def validate_exp_date(self, value):
+    def validate_exp_date(self, value: str) -> str:
         validate_expiration_date_str(value)
         return value
 
-    def validate_number(self, value):
+    def validate_number(self, value: str) -> str:
         validate_credit_card_number(value)
         return value
 
-    def create(self, validated_data):
+    def create(self, validated_data: Dict[str, Any]) -> CreditCard:
         if "cvv" in validated_data:
             cvv_str = validated_data.pop("cvv")
             validated_data["cvv"] = int(cvv_str)

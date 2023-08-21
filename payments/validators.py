@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from .utils import create_formated_date_with_day
 
 
-def validate_expiration_date_str(exp_date):
+def validate_expiration_date_str(exp_date: str) -> None:
     try:
         _ = datetime.strptime(exp_date, "%m/%Y")
     except ValueError:
@@ -21,7 +21,7 @@ def validate_expiration_date_str(exp_date):
         raise ValidationError("Expiration date is a past date")
 
 
-def validate_credit_card_number(card_number):
+def validate_credit_card_number(card_number: str) -> None:
     cc = CreditCard(card_number)
     if not cc.is_valid():
         raise ValidationError("Card number is invalid")
