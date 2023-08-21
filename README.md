@@ -108,6 +108,13 @@ You can use the default user we created to test the api.
 | -------------:|:--------:|:-------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |     `username` | required | string  | user username. <br/> If you uses the super user default we created the value will be `admin`.                                                                   |
 |    `password` | required | string  | user password. <br/> If you uses the super user default we created the value will be `1234`.          |
+***payload example***
+```
+{
+    "username": "admin",
+    "password": "1234"
+}
+```
 
 ***Response***
 ```
@@ -142,7 +149,7 @@ To access this endpoint you will need to at the follow key value to the request 
 
 ```
 
-*** Response ***
+***Response***
 ```
 [
     {
@@ -177,7 +184,7 @@ To access this endpoint you will need to at the follow key value to the request 
 
 ```
 
-*** Response ***
+***Response***
 ```
 [
     {
@@ -203,7 +210,7 @@ To access this endpoint you will need to at the follow key value to the request 
 |    `cvv` | optionl | string  | The numbers behide the card it is optional, but if you add this key at the payload it must have a valid value. with 3 or 4 characters.        |
 |    `exp_date` | required | string  | Expiration date, must be a string with the month and year at the following format  `02/206`          |
 
-*** payload example ***
+***payload example***
 ```
 {
     "holder": "owner",
@@ -222,7 +229,7 @@ To access this endpoint you will need to at the follow key value to the request 
 
 ```
 
-*** Response ***
+***Response***
 ```
 [
     {
