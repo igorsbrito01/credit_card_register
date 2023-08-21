@@ -1,6 +1,7 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils import timezone
+from django.core.validators import MaxValueValidator
+
+from .utils import get_brand_from_cc_number, encrypt
 
 
 class CreditCard(models.Model):
@@ -15,3 +16,11 @@ class CreditCard(models.Model):
 
     def __repr__(self) -> str:
         return f"Credit Card - {self.holder} - {self.number}"
+    
+    def save(self, *args, **kwargs):
+        # The encryptation should be inside the save, 
+        # to avoid mistakes from the developer when use this model
+        self.brand = get_brand_from_cc_number(self.number)
+        self.number = encrypt(self.number)
+
+        super().save(*args, **kwargs)

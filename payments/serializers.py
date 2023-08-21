@@ -49,8 +49,4 @@ class CreditCardCreateSerializer(serializers.ModelSerializer):
         exp_date = create_formated_date_with_day(exp_date_str)
         validated_data["exp_date"] = exp_date
 
-        number = validated_data.pop("number")
-        validated_data["brand"] = get_brand_from_cc_number(number)
-        validated_data["number"] = encrypt(number)
-
         return super().create(validated_data)
