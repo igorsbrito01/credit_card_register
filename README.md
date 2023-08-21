@@ -88,13 +88,13 @@ We have 5 main endpoints 3 to create and access the credit card data, 1 to login
 To access any credit card endpoint a session token is required, it can be acquired at the login endpoint.
 
 ### User Endpoints
-`User Login` [POST - /user/auth/login](#POST-/user/auth/login) <br/>
-`User Logout` [GET -/user/auth/logout](#GET-/user/auth/logout) <br/>
+`User Login` [POST - /user/auth/login](#post---userauthlogin) <br/>
+`User Logout` [GET -/user/auth/logout](#get---userauthlogout) <br/>
 
 ### Credit Card endpoints
-`List all credit cards ` [GET - /api/v1/credit-card](#GET-/api/v1/credit-card) <br/>
-`Retrieve a single credit card by id ` [GET - /api/v1/credit-card/<pk>](#GET-/api/v1/credit-card/<pk>) <br/>
-`Create a new credir card ` [POST - /api/v1/credit-card](#POST-/api/v1/credit-card) <br/>
+`List all credit cards ` [GET - /api/v1/credit-card](#get---apiv1credit-card) <br/>
+`Retrieve a single credit card by id ` [GET - /api/v1/credit-card/<pk>](#get---apiv1credit-card-<pk>) <br/>
+`Create a new credir card ` [POST - /api/v1/credit-card](#post---apiv1credit-card) <br/>
 
 
 ___
@@ -165,17 +165,9 @@ To access this endpoint you will need to at the follow key value to the request 
 
 ```
 
-### GET - /api/v1/credit-card/<pk>
+### GET - /api/v1/credit-card/< pk >
 At this endpoint you will retrieve a single credit card by the id. <br/>
 To access this endpoint you will need to at the follow key value to the request hearder
-***Payload***
-|          Name | Required |  Type   | Description                                                                                                                                                         |
-| -------------:|:--------:|:-------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     `holder` | required | string  | Name of the credit card owner. Must be a string with more than 3 characters                                               |
-|    `number` | required | string  | Number of the credit card (this value will be encrypted at the database)          |
-|    `cvv` | optionl | string  | The numbers behide the card it is optional, but if you add this key at the payload it must have a valid value. with 3 or 4 characters.        |
-|    `exp_date` | required | string  | Expiration date, must be a string with the month and year at the following format  `02/206`          |
-
 ***Request Header***
 ```
 {
@@ -203,6 +195,24 @@ To access this endpoint you will need to at the follow key value to the request 
 ### POST - /api/v1/credit-card/
 At this endpoint you will be able to create a credit card. <br/>
 To access this endpoint you will need to at the follow key value to the request hearder
+***Payload***
+|          Name | Required |  Type   | Description                                                                                                                                                         |
+| -------------:|:--------:|:-------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     `holder` | required | string  | Name of the credit card owner. Must be a string with more than 3 characters                                               |
+|    `number` | required | string  | Number of the credit card (this value will be encrypted at the database)          |
+|    `cvv` | optionl | string  | The numbers behide the card it is optional, but if you add this key at the payload it must have a valid value. with 3 or 4 characters.        |
+|    `exp_date` | required | string  | Expiration date, must be a string with the month and year at the following format  `02/206`          |
+
+*** payload example ***
+```
+{
+    "holder": "owner",
+    "number": "4539578763621486",
+    "cvv": "345",
+    "exp_date": "05/2027"
+}
+```
+
 ***Request Header***
 ```
 {
