@@ -1,5 +1,7 @@
 import calendar
 from datetime import datetime
+
+from creditcard import CreditCard
 from cryptography.fernet import Fernet
 
 from django.conf import settings
@@ -36,3 +38,8 @@ def hide_cc_numbers(number: str) -> str:
     hide_str = "".join(["*" for iten in hide_part])
 
     return hide_str + ending
+
+
+def get_brand_from_cc_number(card_number: str) -> str:
+    cc = CreditCard(card_number)
+    return cc.get_brand()

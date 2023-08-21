@@ -1,7 +1,13 @@
 from rest_framework import serializers
 
 from .models import CreditCard
-from .utils import create_formated_date_with_day, encrypt, decrypt, hide_cc_numbers
+from .utils import (
+    create_formated_date_with_day,
+    encrypt,
+    decrypt,
+    hide_cc_numbers,
+    get_brand_from_cc_number,
+)
 from .validators import validate_expiration_date_str, validate_credit_card_number
 
 
@@ -44,6 +50,7 @@ class CreditCardCreateSerializer(serializers.ModelSerializer):
         validated_data["exp_date"] = exp_date
 
         number = validated_data.pop("number")
+        validated_data["brand"] = get_brand_from_cc_number(number)
         validated_data["number"] = encrypt(number)
 
         return super().create(validated_data)
