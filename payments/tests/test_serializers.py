@@ -11,6 +11,18 @@ class CreditCardCreateSerializerTest(TestCase):
     Test the validation when uses the serializer to create credit cards
     """
 
+    def test_valid_data(self):
+        date = datetime.now() + relativedelta(months=1)
+        data = {
+            "id": 1,
+            "holder": "Igor",
+            "number": "4539578763621486",
+            "cvv": "344",
+            "exp_date": date.strftime("%m/%Y"),
+        }
+        serializer = CreditCardCreateSerializer(data=data)
+        self.assertEqual(serializer.is_valid(), True)
+
     def test_wrong_format_expiration_date(self):
         """
         Test the format of the value at the expiration date field
