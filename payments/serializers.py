@@ -3,10 +3,8 @@ from rest_framework import serializers
 from .models import CreditCard
 from .utils import (
     create_formated_date_with_day,
-    encrypt,
     decrypt,
     hide_cc_numbers,
-    get_brand_from_cc_number,
 )
 from .validators import validate_expiration_date_str, validate_credit_card_number
 
