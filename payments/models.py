@@ -16,9 +16,9 @@ class CreditCard(models.Model):
 
     def __repr__(self) -> str:
         return f"Credit Card - {self.holder} - {self.number}"
-    
+
     def save(self, *args, **kwargs):
-        # The encryptation should be inside the save, 
+        # The encryptation should be inside the save,
         # to avoid mistakes from the developer when use this model
         self.brand = get_brand_from_cc_number(self.number)
         self.number = encrypt(self.number)

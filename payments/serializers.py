@@ -11,7 +11,7 @@ from .utils import (
 from .validators import validate_expiration_date_str, validate_credit_card_number
 
 
-class CreditCardCreateListSerializer(serializers.ModelSerializer):
+class CreditCardListSerializer(serializers.ModelSerializer):
     number = serializers.SerializerMethodField()
 
     class Meta:
