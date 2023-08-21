@@ -1,14 +1,20 @@
 from rest_framework import serializers
 
 from .models import CreditCard
-from .utils import create_formated_date_with_day
+from .utils import create_formated_date_with_day, encrypt, decrypt, hide_cc_numbers
 from .validators import validate_expiration_date_str, validate_credit_card_number
 
 
 class CreditCardCreateListSerializer(serializers.ModelSerializer):
+    number = serializers.SerializerMethodField()
+
     class Meta:
         model = CreditCard
         fields = ("id", "holder", "number", "brand", "created_at", "updated_at")
+
+    def get_number(self, obj):
+        number = decrypt(obj.number)
+        return hide_cc_numbers(number)
 
 
 class CreditCardCreateSerializer(serializers.ModelSerializer):
@@ -28,8 +34,6 @@ class CreditCardCreateSerializer(serializers.ModelSerializer):
         validate_credit_card_number(value)
         return value
 
-    # TODO: encript number
-
     def create(self, validated_data):
         if "cvv" in validated_data:
             cvv_str = validated_data.pop("cvv")
@@ -38,5 +42,8 @@ class CreditCardCreateSerializer(serializers.ModelSerializer):
         exp_date_str = validated_data.pop("exp_date")
         exp_date = create_formated_date_with_day(exp_date_str)
         validated_data["exp_date"] = exp_date
+
+        number = validated_data.pop("number")
+        validated_data["number"] = encrypt(number)
 
         return super().create(validated_data)
