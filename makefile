@@ -17,4 +17,7 @@ docker_migrate:
 	@docker exec credit_card_register-server-1 python manage.py migrate
 
 docker_makemigrations:
-	@docker exec credit_card_register-server-1 python manage.py migrate
+	@docker exec credit_card_register-server-1 python manage.py makemigrations
+
+docker_run_tests:
+	@docker exec credit_card_register-server-1 python manage.py test payments.tests
