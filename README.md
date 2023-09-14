@@ -4,7 +4,7 @@
  Author: [Igor Santos Brito](https://www.linkedin.com/in/igor-brito-916a60b1/)
 
  ## About 
-The challenge was building an API to register credit card information following rules related to the validation of the credit card data.
+ API to register credit card information following rules related to the validation of the credit card data.
 
  ## Technologies
  - [Python 3.9](https://www.python.org/)
