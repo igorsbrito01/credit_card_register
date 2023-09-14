@@ -26,7 +26,7 @@ class LoginView(APIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class logoutView(APIView):
+class LogoutView(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
